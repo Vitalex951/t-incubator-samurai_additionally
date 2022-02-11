@@ -1,23 +1,23 @@
-import React from 'react';
+import React, {useState} from 'react';
 import  './OnOffstyle.css';
 
-export type OnOffTypeProps = {
-    condition: boolean
-    changeofevents: (condition: boolean) => void
-}
+// export type OnOffTypeProps = {
+//     condition: boolean
+// }
 
-const OnOff = (props: OnOffTypeProps) => {
+const OnOff = () => {
+    let [on, setOn] = useState(true);
     return (
         <div>
-            {props.condition && <div>
-                <button onClick={() => props.changeofevents(true)} className='mainbuttons green'>ON</button>
-                <button onClick={() => props.changeofevents(false)} className='mainbuttons red'>Off</button>
+            {on && <div>
+                <button onClick={() =>setOn(true)} className='mainbuttons green'>ON</button>
+                <button onClick={() => setOn(false)} className='mainbuttons'>Off</button>
                 <button className='mainbuttons green'></button>
             </div>}
 
-            {!props.condition && <div>
-                <button onClick={() => props.changeofevents(true)} className='mainbuttons red'>ON</button>
-                <button onClick={() => props.changeofevents(false)} className='mainbuttons green'>Off</button>
+            {!on && <div>
+                <button onClick={() => setOn(true)} className='mainbuttons'>ON</button>
+                <button onClick={() => setOn(false)} className='mainbuttons green'>Off</button>
                 <button className='mainbuttons red'></button>
             </div>}
 
