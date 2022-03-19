@@ -1,50 +1,39 @@
-import React, {useState} from "react";
+import React, {useReducer, useState} from "react";
+import {log} from "util";
 
 type AccordionPropType = {
-    titleValue: string,
+    titleValue: string
     fff: boolean
+
 }
+
+
+
 
 function UncontolledAccordion(props: AccordionPropType) {
-    let [collapsed, setCollapsed] = useState(props.fff);
-    function ExpandAccordion(on: boolean) {
-        collapsed = on;
-        setCollapsed(collapsed);
-        console.log(collapsed)
-    }
+    // let [collapsed, setCollapsed] = useState(props.fff);
+    // let [collapsed, dispatch] = useReducer(reducer, false)
+    return (
+        <div>
+            {/*<AccordionTitle title={props.titleValue} onClick={() => setCollapsed(!collapsed)}/>*/}
 
-    if (collapsed) {
-        return (
-            <div>
-                <AccordionTitle title={props.titleValue} ExpandAccordion={ExpandAccordion} fff={true} />
-                <AccordionBody/>
-            </div>)
-    } else {
-        return (
-            <div>
-                <AccordionTitle title={props.titleValue} ExpandAccordion={ExpandAccordion} fff={false}/>
-            </div>)
-    }
+            {/*<AccordionTitle title={props.titleValue} onClick={() => dispatch({type: 'TOGGLE-COLAPSED'})}/>*/}
+            {/*{!collapsed && <AccordionBody/>}*/}
+        </div>)
+
 }
+
 
 type AccordionTitlePropType = {
     title: string,
-    ExpandAccordion: (on: boolean) => void
-    fff: boolean
+    onClick: () => void
 
 }
 
 function AccordionTitle(props: AccordionTitlePropType) {
     return (
-        <div>
-            <h3>{props.title}</h3>
-            <button onClick={() => {
-                if (props.fff) {
-                    props.ExpandAccordion(false)
-                } else props.ExpandAccordion(true)
-            }}>TOGGLE
-            </button>
-        </div>
+        <h3 onClick={() => props.onClick()}>{props.title}</h3>
+
     )
 }
 

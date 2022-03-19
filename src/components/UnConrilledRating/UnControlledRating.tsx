@@ -5,27 +5,33 @@ type RatingPropsType = {
 }
 
 export function UnControlledRating(props: RatingPropsType) {
-    let [value, setValue] = useState(props.value)
-
+    let [value, setValue] = useState(1)
+    let valueOnClick = ((v: number) => setValue(v))
     return (
         <div>
-            <Star selected={value > 0}/> <button onClick={() => setValue(1)}>1</button>
-            <Star selected={value > 1}/><button onClick={() => setValue(2)}>2</button>
-            <Star selected={value > 2}/><button onClick={() => setValue(3)}>3</button>
-            <Star selected={value > 3}/><button onClick={() => setValue(4)}>4</button>
-            <Star selected={value > 4}/><button onClick={() => setValue(5)}>5</button>
+            <Star value={1} selected={value > 0} valueOnClick={valueOnClick}/>
+            <Star value={2} selected={value > 1} valueOnClick={valueOnClick}/>
+            <Star value={3} selected={value > 2} valueOnClick={valueOnClick}/>
+            <Star value={4} selected={value > 3} valueOnClick={valueOnClick}/>
+            <Star value={5} selected={value > 4} valueOnClick={valueOnClick}/>
         </div>
     );
 }
 
 type StarPropsType = {
     selected: boolean
+    value: number
+    valueOnClick: (v: number) => void
 }
 
 
 function Star(props: StarPropsType) {
-    if (props.selected) {
-        return <span><b>Star </b></span>
-    } else return <span>star </span>
+    console.log(props.value)
+    let callback = (() => props.valueOnClick(props.value))
+    // return props.selected ? <span onClick={callback}><b>Star  </b></span> :
+    //     <span onClick={callback}>star </span>
+
+    return <span onClick={callback}>  {props.selected && <b>Star  </b>}  {!props.selected && " star"} </span>
+
 
 };

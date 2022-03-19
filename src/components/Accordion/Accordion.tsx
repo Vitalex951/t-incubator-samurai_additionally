@@ -1,33 +1,30 @@
-import React from "react";
+import React, {useReducer} from "react";
+import {reducer} from "./reducer";
 
 type AccordionPropType = {
-    titleValue : string,
-    collapsed : boolean
+    titleValue: string
 }
 
 function Accordion(props: AccordionPropType) {
-   if(props.collapsed) {
-       return (
-           <div>
-               <AccordionTitle title={props.titleValue}/>
-               < AccordionBody/>
-           </div>)
-   } else {
-       return (
-           <div>
-               <AccordionTitle title={props.titleValue}/>
-           </div>)
-   }
+    let [collapsed, dispatch] = useReducer(reducer, {collapsed: true})
+    console.log(collapsed)
+    return (
+        <div>
+            <AccordionTitle title={props.titleValue} onClick={() => dispatch({type: 'TOGGLE-COLLAPSED'})}/>
+            {!collapsed.collapsed && <AccordionBody/>}
+        </div>
+    )
 }
 
 type AccordionTitlePropType = {
-    title : string
+    title: string
+    onClick: () => void
 }
 
 function AccordionTitle(props: AccordionTitlePropType) {
     return (
 
-        <h3>{props.title}</h3>
+        <h3 onClick={() => props.onClick()}>{props.title}</h3>
     )
 
 
