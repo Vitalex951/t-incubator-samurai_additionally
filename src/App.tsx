@@ -4,6 +4,8 @@ import Accordion from "./components/Accordion/Accordion";
 import OnOff from "./components/OnOff/OnOff";
 import {Select} from "./components/select/select";
 import UncontolledAccordion from "./components/UncontrolledAccordion/UncontolledAccordion";
+import {LikeUseCallback, UseMemo} from "./components/UseMemo/UseMemo";
+import {citys, SelectMemo} from "./components/select/SelectMemo";
 
 
 function App() {
@@ -18,8 +20,12 @@ function App() {
             {/*Article 1*/}
             {/*<Rating value={3}/>*/}
             {/*<Accordion titleValue={'Menu'} collapsed={true}/>*/}
-            <Accordion titleValue={'Menu'}
-                      />
+            {/*<Accordion titleValue={'Menu'}*/}
+            {/*          />*/}
+            {/*          /!*<UseMemo/>*!/*/}
+            {/*          <SelectMemo/>*/}
+
+                      <LikeUseCallback/>
             {/*<Select value={'Minsk'} onChange={() => {*/}
             {/*}} items={[*/}
             {/*    {value: '1', title: 'Minsk'},*/}
